@@ -231,11 +231,6 @@ function renderProducts() {
           <p class="product-card__price" data-id="${p.id}">${currency}${firstPrice}</p>
           ${variantHTML}
           <div class="card-controls">
-            <div class="card-qty" data-id="${p.id}">
-              <button class="card-qty__btn card-qty__minus" data-id="${p.id}">−</button>
-              <span class="card-qty__val" data-id="${p.id}">1</span>
-              <button class="card-qty__btn card-qty__plus" data-id="${p.id}">+</button>
-            </div>
             <button class="card-add-btn add-cart-btn" data-id="${p.id}" ${soldOut ? 'disabled' : ''}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
               Add
@@ -257,31 +252,14 @@ function renderProducts() {
     });
   });
 
-  // Qty +/- buttons
-  $$('.card-qty__minus').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const valEl = document.querySelector(`.card-qty__val[data-id="${btn.dataset.id}"]`);
-      let v = parseInt(valEl.textContent);
-      if (v > 1) valEl.textContent = v - 1;
-    });
-  });
-  $$('.card-qty__plus').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const valEl = document.querySelector(`.card-qty__val[data-id="${btn.dataset.id}"]`);
-      let v = parseInt(valEl.textContent);
-      if (v < 10) valEl.textContent = v + 1;
-    });
-  });
-
-  // Add to cart with selected variant + qty
+  // Add to cart with selected variant (qty always 1)
   $$('.add-cart-btn').forEach(btn => btn.addEventListener('click', () => {
     const productId = btn.dataset.id;
     const p = allProducts.find(x => x.id === productId);
     if (!p || p.qty <= 0) return;
 
     const activePill = document.querySelector(`.card-variants__pill.active[data-id="${productId}"]`);
-    const qtyEl = document.querySelector(`.card-qty__val[data-id="${productId}"]`);
-    const qty = qtyEl ? parseInt(qtyEl.textContent) : 1;
+    const qty = 1;
 
     let variant, price;
     if (activePill && p.variants && p.variants.length > 0) {
@@ -303,9 +281,6 @@ function renderProducts() {
       eggless: false,
       cakeMessage: ''
     });
-
-    // Reset qty to 1 after adding
-    if (qtyEl) qtyEl.textContent = '1';
 
     // Button feedback
     btn.classList.add('added');
@@ -651,21 +626,7 @@ checkoutForm.addEventListener('submit', (e) => {
     }
   }
 
-  // Generate dynamic QR
-  paymentQR.innerHTML = '';
-  try {
-    new QRCode(paymentQR, {
-      text: upiLink,
-      width: 220,
-      height: 220,
-      colorDark: '#3E2723',
-      colorLight: '#FFF8E1',
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  } catch (err) {
-    // Fallback: show static QR image if available
-    paymentQR.innerHTML = `<img src="gpay-qr.png" alt="GPay QR Code" style="width:220px;height:220px;border-radius:12px;" onerror="this.style.display='none'" />`;
-  }
+  // Static QR code image (QRScanner.jpeg) is used instead of dynamic generation
 
   checkoutStep1.style.display = 'none';
   checkoutStep2.style.display = 'block';

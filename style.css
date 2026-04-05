@@ -1368,6 +1368,13 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   display: inline-block;
 }
 
+.payment-qr-img {
+  width: 420px;
+  height: 420px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
 .payment-scan-hint {
   font-size: 0.8rem;
   color: var(--clr-brown-light);
