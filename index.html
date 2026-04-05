@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crumb & Cheese — Baked with Love</title>
+  <meta name="description" content="Handcrafted cakes, tarts, cupcakes and brownies — order online from Crumb & Cheese." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- No external email SDK needed — using FormSubmit.co -->
+
+  <!-- QRCode.js for dynamic UPI QR (with fallback) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    // Fallback: if jsdelivr fails, try cdnjs
+    if (typeof QRCode === 'undefined') {
+      var q = document.createElement('script');
+      q.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+      document.head.appendChild(q);
+    }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="CNC website/logo.png" type="image/png" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#b5651d" />
+  <link rel="apple-touch-icon" href="CNC website/logo.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Crumb & Cheese" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- HEADER / NAVBAR -->
+  <!-- ============================================ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#home" class="navbar__brand">
+        <img src="CNC website/logo.png" alt="Crumb & Cheese logo" class="navbar__logo" />
+      </a>
+
+      <!-- Mobile hamburger toggle -->
+      <input type="checkbox" id="nav-toggle" class="navbar__toggle-input" />
+      <label for="nav-toggle" class="navbar__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Mobile nav overlay (click to close) -->
+      <label for="nav-toggle" class="navbar__overlay" aria-hidden="true"></label>
+
+      <nav class="navbar__links">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="navbar__cart-btn" id="cart-btn" aria-label="Open cart">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span class="navbar__cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- HERO SECTION -->
+  <!-- ============================================ -->
+  <section class="hero" id="home">
+    <div class="hero__content">
+      <img src="CNC website/logo.png" alt="" class="hero__logo" />
+      <h1 class="hero__title">Baked with love,<br/>crafted with passion</h1>
+      <p class="hero__subtitle">Handcrafted cakes, tarts, cupcakes &amp; brownies — made to celebrate life's sweetest moments.</p>
+      <a href="#menu" class="btn btn--primary hero__cta">Explore Our Menu</a>
+    </div>
+    <!-- Decorative floating elements -->
+    <div class="hero__deco hero__deco--1" aria-hidden="true">✦</div>
+    <div class="hero__deco hero__deco--2" aria-hidden="true">✦</div>
+    <div class="hero__deco hero__deco--3" aria-hidden="true">✦</div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- MENU / PRODUCTS SECTION -->
+  <!-- ============================================ -->
+  <section class="menu" id="menu">
+    <div class="menu__header reveal">
+      <h2 class="section-title">Our Menu</h2>
+      <p class="section-subtitle">Freshly baked, lovingly crafted — pick your favourite</p>
+    </div>
+
+    <!-- Search bar -->
+    <div class="menu__search reveal">
+      <input type="text" id="search-input" placeholder="Search for a treat..." aria-label="Search products" />
+    </div>
+
+    <!-- Category filter pills -->
+    <div class="menu__filters reveal" id="category-filters">
+      <!-- Dynamically populated from products.json -->
+    </div>
+
+    <!-- Products grid -->
+    <div class="menu__grid" id="products-grid">
+      <!-- Dynamically populated from products.json -->
+    </div>
+
+    <!-- Loading spinner (visible until JSON loads) -->
+    <div class="menu__loading" id="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading deliciousness...</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ABOUT SECTION -->
+  <!-- ============================================ -->
+  <section class="about" id="about">
+    <div class="about__inner reveal">
+      <h2 class="section-title">Our Story</h2>
+      <div class="about__content">
+        <img src="CNC website/logo.png" alt="Crumb & Cheese" class="about__image" />
+        <p class="about__text" id="about-text">
+          <!-- Populated from products.json "about" field -->
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- CONTACT SECTION -->
+  <!-- ============================================ -->
+  <section class="contact" id="contact">
+    <!-- Decorative floating shapes -->
+    <div class="contact__bg-shape contact__bg-shape--1"></div>
+    <div class="contact__bg-shape contact__bg-shape--2"></div>
+    <div class="contact__bg-shape contact__bg-shape--3"></div>
+
+    <div class="contact__inner reveal">
+      <div class="contact__header">
+        <span class="contact__eyebrow">We'd Love to Hear From You</span>
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="contact__subtitle">Whether it's a custom cake or a quick question — reach out and let's make something sweet together.</p>
+      </div>
+
+      <div class="contact__cards" id="contact-cards">
+        <!-- Populated from products.json "contact" field -->
+      </div>
+
+      <div class="contact__quote">
+        <span class="contact__quote-icon">“</span>
+        <p>Every cake tells a story. Let us write yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <img src="CNC website/logo.png" alt="Crumb & Cheese" class="footer__logo" />
+      <p class="footer__text">Made with ❤️ by Crumb & Cheese</p>
+      <p class="footer__copy">&copy; 2026 Crumb & Cheese. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- PRODUCT DETAIL MODAL -->
+  <!-- ============================================ -->
+  <div class="modal-overlay" id="product-modal" aria-hidden="true">
+    <div class="modal">
+      <button class="modal__close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal__body">
+        <div class="modal__image-wrap">
+          <img src="" alt="" class="modal__image" id="modal-image" />
+        </div>
+        <div class="modal__details">
+          <span class="modal__tag" id="modal-tag"></span>
+          <h2 class="modal__name" id="modal-name"></h2>
+          <p class="modal__desc" id="modal-desc"></p>
+          <p class="modal__price" id="modal-price"></p>
+
+          <div class="modal__options">
+            <label class="modal__label">Variant</label>
+            <select class="modal__select" id="modal-variant"></select>
+
+            <label class="modal__label">Quantity</label>
+            <div class="modal__qty">
+              <button class="modal__qty-btn" id="modal-qty-minus">−</button>
+              <span class="modal__qty-value" id="modal-qty-value">1</span>
+              <button class="modal__qty-btn" id="modal-qty-plus">+</button>
+            </div>
+
+            <!-- Customisation toggles (shown/hidden based on product JSON) -->
+            <div class="modal__custom" id="modal-eggless-wrap" style="display:none;">
+              <label><input type="checkbox" id="modal-eggless" /> Eggless</label>
+            </div>
+            <div class="modal__custom" id="modal-message-wrap" style="display:none;">
+              <label class="modal__label">Message on Cake</label>
+              <input type="text" id="modal-message" class="modal__input" placeholder="e.g. Happy Birthday!" maxlength="50" />
+            </div>
+          </div>
+
+          <button class="btn btn--primary modal__add-cart" id="modal-add-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CART SIDEBAR -->
+  <!-- ============================================ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar" aria-hidden="true">
+    <div class="cart-sidebar__header">
+      <h2>Your Cart</h2>
+      <div class="cart-sidebar__header-actions">
+        <button class="cart-sidebar__clear" id="cart-clear" aria-label="Clear cart" title="Clear all items">🗑️</button>
+        <button class="cart-sidebar__close" id="cart-close" aria-label="Close cart">&times;</button>
+      </div>
+    </div>
+    <div class="cart-sidebar__items" id="cart-items">
+      <!-- Dynamically populated -->
+    </div>
+    <div class="cart-sidebar__empty" id="cart-empty">
+      <p>Your cart is empty</p>
+    </div>
+    <div class="cart-sidebar__footer" id="cart-footer">
+      <div class="cart-sidebar__total">
+        <span>Total</span>
+        <span id="cart-total">₹0</span>
+      </div>
+      <button class="btn btn--primary cart-sidebar__checkout" id="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ============================================ -->
+  <!-- CHECKOUT MODAL -->
+  <!-- ============================================ -->
+  <div class="modal-overlay" id="checkout-modal" aria-hidden="true">
+    <div class="modal modal--checkout">
+      <button class="modal__close" id="checkout-close" aria-label="Close">&times;</button>
+
+      <!-- Step 1: User Details -->
+      <div class="checkout-step" id="checkout-step-1">
+        <h2 class="modal__title">Delivery Details</h2>
+
+        <!-- Step indicators -->
+        <div class="checkout-steps-indicator">
+          <span class="step-dot active">1</span>
+          <span class="step-line"></span>
+          <span class="step-dot">2</span>
+          <span class="step-line"></span>
+          <span class="step-dot">3</span>
+        </div>
+
+        <form id="checkout-form" class="checkout-form" novalidate>
+          <div class="form-group">
+            <label for="cust-name">Full Name *</label>
+            <input type="text" id="cust-name" required />
+          </div>
+          <div class="form-group">
+            <label for="cust-phone">Phone Number *</label>
+            <input type="tel" id="cust-phone" required />
+          </div>
+          <div class="form-group">
+            <label for="cust-email">Email</label>
+            <input type="email" id="cust-email" />
+          </div>
+          <div class="form-group">
+            <label for="cust-address">Delivery Address *</label>
+            <textarea id="cust-address" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="cust-date">Preferred Delivery Date *</label>
+            <input type="date" id="cust-date" required />
+          </div>
+          <div class="form-group">
+            <label for="cust-notes">Special Instructions</label>
+            <textarea id="cust-notes" rows="2"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Proceed to Payment</button>
+        </form>
+      </div>
+
+      <!-- Step 2: GPay / UPI Payment -->
+      <div class="checkout-step" id="checkout-step-2" style="display:none;">
+        <h2 class="modal__title">Complete Payment</h2>
+
+        <!-- Step indicators -->
+        <div class="checkout-steps-indicator">
+          <span class="step-dot completed">1</span>
+          <span class="step-line"></span>
+          <span class="step-dot active">2</span>
+          <span class="step-line"></span>
+          <span class="step-dot">3</span>
+        </div>
+
+        <div class="payment-info">
+          <!-- Order summary -->
+          <div class="order-summary" id="order-summary"></div>
+
+          <p class="payment-amount">Amount to pay: <strong id="payment-total"></strong></p>
+
+          <!-- Mobile: prominent UPI button -->
+          <div class="payment-mobile" id="payment-mobile">
+            <a href="#" class="btn btn--gpay btn--gpay-large" id="gpay-link" target="_blank">
+              <span class="gpay-icon">📱</span> Pay ₹<span id="gpay-amount"></span> with UPI / GPay
+            </a>
+            <p class="payment-mobile__hint">Tap above to open your UPI app directly</p>
+          </div>
+
+          <!-- Desktop/fallback: QR code -->
+          <div class="payment-desktop" id="payment-desktop">
+            <p class="payment-scan-label">Scan QR code to pay</p>
+            <div class="payment-qr-wrap">
+              <div class="payment-qr" id="payment-qr"></div>
+            </div>
+            <p class="payment-scan-hint">Open GPay / PhonePe / Paytm and scan this code</p>
+          </div>
+
+          <div class="payment-divider">
+            <span>After payment, confirm below</span>
+          </div>
+
+          <div class="form-group">
+            <label for="txn-id">Transaction / Reference ID</label>
+            <input type="text" id="txn-id" placeholder="e.g. GPAY-ABC123XYZ" />
+          </div>
+          <button class="btn btn--primary" id="payment-done-btn">I've Completed Payment</button>
+          <button class="btn btn--outline payment-back" id="payment-back-btn">← Back to Details</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Confirmation -->
+      <div class="checkout-step" id="checkout-step-3" style="display:none;">
+        <!-- Step indicators -->
+        <div class="checkout-steps-indicator">
+          <span class="step-dot completed">1</span>
+          <span class="step-line completed"></span>
+          <span class="step-dot completed">2</span>
+          <span class="step-line completed"></span>
+          <span class="step-dot completed active">3</span>
+        </div>
+
+        <div class="confirmation">
+          <div class="confirmation__icon">🎉</div>
+          <h2>Order Placed!</h2>
+          <p>Thank you! Your order has been placed successfully.</p>
+          <p>We've sent the details to our team. You'll hear from us soon!</p>
+          <button class="btn btn--primary" id="confirmation-close">Back to Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS -->
+  <!-- ============================================ -->
+  <script src="email-config.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Toast notification container -->
+  <div class="toast-container" id="toast-container"></div>
+
+</body>
+</html>

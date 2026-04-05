@@ -1,0 +1,400 @@
+{
+  "storeName": "Crumb & Cheese",
+  "currency": "₹",
+  "tagline": "Baked with love, crafted with passion",
+  "about": "At Crumb & Cheese, every bite tells a story. We handcraft our cakes, tarts, cupcakes, and brownies using the finest ingredients, blending classic techniques with creative flavors. From rich chocolate indulgences to delicate fruit-topped tarts — our creations are made to celebrate life's sweetest moments.",
+  "contact": {
+    "email": "22harshu@gmail.com",
+    "phone": "+91 80733 56027",
+    "instagram": "https://www.instagram.com/crumbncheese/",
+    "address": "Bengaluru, India"
+  },
+  "upiId": "YOUR_UPI_ID@okaxis",
+  "categories": ["Cakes", "Tarts", "Cupcakes", "Brownies"],
+  "products": [
+    {
+      "id": "chocolate-raspberry-cake",
+      "name": "Chocolate Raspberry Cake",
+      "image": "CNC website/Chocolate raspberry cake.PNG",
+      "category": "Cakes",
+      "price": 850,
+      "description": "Decadent layers of dark chocolate sponge with fresh raspberry compote and silky chocolate ganache.",
+      "available": true,
+      "qty": 10,
+      "tags": ["bestseller"],
+      "variants": [
+        { "label": "Regular (500g)", "price": 850 },
+        { "label": "Large (1kg)", "price": 1500 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "chocolate-strawberry-cake",
+      "name": "Chocolate Strawberry Cake",
+      "image": "CNC website/Chocolate strawberry cake.png",
+      "category": "Cakes",
+      "price": 800,
+      "description": "A luscious chocolate cake adorned with fresh strawberries and whipped cream layers.",
+      "available": true,
+      "qty": 8,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 800 },
+        { "label": "Large (1kg)", "price": 1400 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "lemon-blueberry",
+      "name": "Lemon Blueberry",
+      "image": "CNC website/Lemon Blueberry.png",
+      "category": "Cakes",
+      "price": 750,
+      "description": "Zesty lemon sponge paired with a burst of blueberry compote and cream cheese frosting.",
+      "available": true,
+      "qty": 10,
+      "tags": ["new"],
+      "variants": [
+        { "label": "Regular (500g)", "price": 750 },
+        { "label": "Large (1kg)", "price": 1300 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "blueberry-lemon",
+      "name": "Blueberry Lemon",
+      "image": "CNC website/Blueberry lemon.png",
+      "category": "Cakes",
+      "price": 750,
+      "description": "A delightful blueberry cake with a hint of lemon zest and creamy frosting.",
+      "available": true,
+      "qty": 10,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 750 },
+        { "label": "Large (1kg)", "price": 1300 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "blueberry-lemon-2",
+      "name": "Blueberry Lemon 2",
+      "image": "CNC website/Blueberry lemon 2.png",
+      "category": "Cakes",
+      "price": 780,
+      "description": "A beautiful blueberry and lemon fusion cake with layered cream and fresh berries.",
+      "available": true,
+      "qty": 8,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 780 },
+        { "label": "Large (1kg)", "price": 1350 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "blueberry-lemon-3",
+      "name": "Blueberry Lemon 3",
+      "image": "CNC website/Blueberry lemon 3.png",
+      "category": "Cakes",
+      "price": 780,
+      "description": "Another stunning rendition of our blueberry-lemon classic with decorative topping.",
+      "available": true,
+      "qty": 8,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 780 },
+        { "label": "Large (1kg)", "price": 1350 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "blueberry-lemon-4",
+      "name": "Blueberry Lemon 4",
+      "image": "CNC website/Blueberry lemon 4.png",
+      "category": "Cakes",
+      "price": 780,
+      "description": "Premium blueberry-lemon cake with elegant finish and creamy blueberry layers.",
+      "available": true,
+      "qty": 8,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 780 },
+        { "label": "Large (1kg)", "price": 1350 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "chocolate-raspberry",
+      "name": "Chocolate Raspberry",
+      "image": "CNC website/Chocolate Raspberry.png",
+      "category": "Cakes",
+      "price": 820,
+      "description": "Rich chocolate sponge layered with tangy raspberry filling and glossy chocolate glaze.",
+      "available": true,
+      "qty": 10,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 820 },
+        { "label": "Large (1kg)", "price": 1450 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "blueberry",
+      "name": "Blueberry",
+      "image": "CNC website/Blueberry.png",
+      "category": "Cakes",
+      "price": 700,
+      "description": "A pure blueberry delight with velvety cream and a burst of fresh blueberries.",
+      "available": true,
+      "qty": 12,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 700 },
+        { "label": "Large (1kg)", "price": 1200 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "chocolate",
+      "name": "Chocolate",
+      "image": "CNC website/Chocolate.png",
+      "category": "Cakes",
+      "price": 650,
+      "description": "Classic chocolate cake with rich cocoa layers and smooth chocolate buttercream.",
+      "available": true,
+      "qty": 15,
+      "tags": [],
+      "variants": [
+        { "label": "Regular (500g)", "price": 650 },
+        { "label": "Large (1kg)", "price": 1100 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "limoncello",
+      "name": "Limoncello",
+      "image": "CNC website/Limoncello.png",
+      "category": "Cakes",
+      "price": 850,
+      "description": "Italian-inspired limoncello cake with lemon curd, mascarpone cream and a citrus glaze.",
+      "available": true,
+      "qty": 6,
+      "tags": ["new"],
+      "variants": [
+        { "label": "Regular (500g)", "price": 850 },
+        { "label": "Large (1kg)", "price": 1500 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": true
+      }
+    },
+    {
+      "id": "banana-caramel-walnut-tart",
+      "name": "Banana Caramel Walnut Tart",
+      "image": "CNC website/Banana caramel walnut tart.png",
+      "category": "Tarts",
+      "price": 450,
+      "description": "Buttery tart shell filled with banana caramel custard and topped with candied walnuts.",
+      "available": true,
+      "qty": 10,
+      "tags": ["bestseller"],
+      "variants": [
+        { "label": "Regular", "price": 450 },
+        { "label": "Large", "price": 750 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "chocolate-strawberry-tart",
+      "name": "Chocolate Strawberry Tart",
+      "image": "CNC website/Chocolate strawberry tart.png",
+      "category": "Tarts",
+      "price": 480,
+      "description": "Crisp chocolate tart base with silky ganache filling and fresh sliced strawberries.",
+      "available": true,
+      "qty": 10,
+      "tags": [],
+      "variants": [
+        { "label": "Regular", "price": 480 },
+        { "label": "Large", "price": 800 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "lemon-meringue-tart",
+      "name": "Lemon Meringue Tart",
+      "image": "CNC website/Lemon meringue tart.png",
+      "category": "Tarts",
+      "price": 420,
+      "description": "Tangy lemon curd in a buttery shell crowned with torched Italian meringue.",
+      "available": true,
+      "qty": 8,
+      "tags": [],
+      "variants": [
+        { "label": "Regular", "price": 420 },
+        { "label": "Large", "price": 700 }
+      ],
+      "customizationOptions": {
+        "eggless": false,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "mocha-tart",
+      "name": "Mocha Tart",
+      "image": "CNC website/Mocha Tart.png",
+      "category": "Tarts",
+      "price": 500,
+      "description": "Espresso-infused chocolate ganache in a crisp tart shell — a coffee lover's dream.",
+      "available": true,
+      "qty": 10,
+      "tags": ["new"],
+      "variants": [
+        { "label": "Regular", "price": 500 },
+        { "label": "Large", "price": 850 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "pistachio-white-chocolate-tart",
+      "name": "Pistachio White Chocolate Tart",
+      "image": "CNC website/Pistachio white chocolate tart.png",
+      "category": "Tarts",
+      "price": 550,
+      "description": "Luxurious pistachio cream and white chocolate ganache in a delicate pastry shell.",
+      "available": true,
+      "qty": 6,
+      "tags": ["limited"],
+      "variants": [
+        { "label": "Regular", "price": 550 },
+        { "label": "Large", "price": 900 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "chocolate-hazelnut-cupcake",
+      "name": "Chocolate Hazelnut Cupcake",
+      "image": "CNC website/Chocolate hazelnut cupcake.png",
+      "category": "Cupcakes",
+      "price": 180,
+      "description": "Moist chocolate cupcake with a Nutella core and hazelnut buttercream swirl.",
+      "available": true,
+      "qty": 20,
+      "tags": ["bestseller"],
+      "variants": [
+        { "label": "Single", "price": 180 },
+        { "label": "Box of 4", "price": 650 },
+        { "label": "Box of 6", "price": 950 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "tiramisu-cupcakes",
+      "name": "Tiramisu Cupcakes",
+      "image": "CNC website/Tiramisu cupcakes.png",
+      "category": "Cupcakes",
+      "price": 200,
+      "description": "Espresso-soaked cupcake with mascarpone frosting and a dusting of cocoa powder.",
+      "available": true,
+      "qty": 20,
+      "tags": [],
+      "variants": [
+        { "label": "Single", "price": 200 },
+        { "label": "Box of 4", "price": 720 },
+        { "label": "Box of 6", "price": 1050 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "vanilla-custard-cupcake",
+      "name": "Vanilla Custard Cupcake",
+      "image": "CNC website/Vanilla custard Cupcake.png",
+      "category": "Cupcakes",
+      "price": 160,
+      "description": "Fluffy vanilla cupcake filled with silky custard cream and topped with vanilla bean frosting.",
+      "available": true,
+      "qty": 25,
+      "tags": [],
+      "variants": [
+        { "label": "Single", "price": 160 },
+        { "label": "Box of 4", "price": 580 },
+        { "label": "Box of 6", "price": 850 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    },
+    {
+      "id": "brownies-with-topping",
+      "name": "Brownies with Topping",
+      "image": "CNC website/Brownies with topping.png",
+      "category": "Brownies",
+      "price": 350,
+      "description": "Dense, fudgy brownies loaded with premium toppings — nuts, chocolate chips, and caramel drizzle.",
+      "available": true,
+      "qty": 15,
+      "tags": ["bestseller"],
+      "variants": [
+        { "label": "Box of 4", "price": 350 },
+        { "label": "Box of 6", "price": 500 },
+        { "label": "Box of 9", "price": 720 }
+      ],
+      "customizationOptions": {
+        "eggless": true,
+        "messageOnCake": false
+      }
+    }
+  ]
+}

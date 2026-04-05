@@ -1,0 +1,26 @@
+{
+  "name": "Crumb & Cheese — Baked with Love",
+  "short_name": "Crumb & Cheese",
+  "description": "Handcrafted cakes, tarts, cupcakes and brownies — order online from Crumb & Cheese.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf6f0",
+  "theme_color": "#b5651d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "CNC website/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "CNC website/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "shopping"]
+}
