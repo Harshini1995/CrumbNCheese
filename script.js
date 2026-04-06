@@ -599,7 +599,7 @@ checkoutForm.addEventListener('submit', (e) => {
   `;
 
   // Generate UPI link
-  const upiId = storeData.upiId || 'YOUR_UPI_ID@okaxis';
+  const upiId = storeData.upiId || '22harshu-1@okhdfcbank';
   const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(storeData.storeName || 'Crumb & Cheese')}&am=${total}&cu=INR`;
   gpayLink.href = upiLink;
 
