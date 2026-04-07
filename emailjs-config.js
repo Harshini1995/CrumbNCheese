@@ -7,7 +7,7 @@
 // SETUP STEPS:
 // 1. Sign up at https://www.emailjs.com/
 // 2. Dashboard → Email Services → Add Service → Gmail
-//    - Connect your Gmail: 22harshu@gmail.com
+//    - Connect your Gmail: crumbncheese@gmail.com
 //    - Note the SERVICE ID (e.g., 'service_abc123')
 //
 // 3. Dashboard → Email Templates → Create New Template
@@ -32,7 +32,7 @@
 //      Transaction ID: {{transaction_id}}
 //      Order Time: {{order_time}}
 //
-//    - To Email: 22harshu@gmail.com
+//    - To Email: crumbncheese@gmail.com
 //    - Note the TEMPLATE ID (e.g., 'template_xyz789')
 //
 // 4. Dashboard → Account → Public Key
