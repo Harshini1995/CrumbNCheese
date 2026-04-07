@@ -212,13 +212,12 @@
       "name": "Chocolate Hazelnut Cupcake",
       "image": "CNC website/CupCakes/Chocolate hazelnut cupcake.png",
       "category": "Cupcakes",
-      "price": 155,
+      "price": 930,
       "description": "Moist chocolate cupcake with a Nutella core and hazelnut buttercream swirl.",
       "available": true,
       "qty": 20,
       "tags": ["bestseller"],
       "variants": [
-        { "label": "Per Piece", "price": 155 },
         { "label": "Box of 6", "price": 930 }
       ],
       "customizationOptions": {
@@ -231,13 +230,12 @@
       "name": "Limoncello Cupcake",
       "image": "CNC website/CupCakes/Limoncello cupcake.png",
       "category": "Cupcakes",
-      "price": 85,
+      "price": 510,
       "description": "Light and zesty limoncello cupcake with a citrus glaze and lemon buttercream.",
       "available": true,
       "qty": 20,
       "tags": [],
       "variants": [
-        { "label": "Per Piece", "price": 85 },
         { "label": "Box of 6", "price": 510 }
       ],
       "customizationOptions": {
@@ -250,13 +248,12 @@
       "name": "Vanilla Custard Cupcake",
       "image": "CNC website/CupCakes/Vanilla custard cupcake.png",
       "category": "Cupcakes",
-      "price": 80,
+      "price": 480,
       "description": "Fluffy vanilla cupcake filled with silky custard cream and topped with vanilla bean frosting.",
       "available": true,
       "qty": 25,
       "tags": [],
       "variants": [
-        { "label": "Per Piece", "price": 80 },
         { "label": "Box of 6", "price": 480 }
       ],
       "customizationOptions": {
@@ -269,13 +266,12 @@
       "name": "Tiramisu Cupcake",
       "image": "CNC website/CupCakes/Tiramisu cupcake.png",
       "category": "Cupcakes",
-      "price": 115,
+      "price": 690,
       "description": "Espresso-soaked cupcake with mascarpone frosting and a dusting of cocoa powder.",
       "available": true,
       "qty": 20,
       "tags": [],
       "variants": [
-        { "label": "Per Piece", "price": 115 },
         { "label": "Box of 6", "price": 690 }
       ],
       "customizationOptions": {

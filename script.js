@@ -218,6 +218,14 @@ function renderProducts() {
       : '';
 
     const firstPrice = p.variants && p.variants.length > 0 ? p.variants[0].price : p.price;
+    const showQtySelector = (p.category === 'Tarts' || p.category === 'Cupcakes');
+    const qtyHTML = showQtySelector
+      ? `<div class="card-qty" data-id="${p.id}">
+            <button class="card-qty__btn card-qty__minus" data-id="${p.id}">−</button>
+            <span class="card-qty__val" data-id="${p.id}">1</span>
+            <button class="card-qty__btn card-qty__plus" data-id="${p.id}">+</button>
+          </div>`
+      : '';
 
     return `
       <div class="product-card" data-id="${p.id}">
@@ -230,6 +238,7 @@ function renderProducts() {
           <h3 class="product-card__name">${p.name}</h3>
           <p class="product-card__price" data-id="${p.id}">${currency}${firstPrice}</p>
           ${variantHTML}
+          ${qtyHTML}
           <div class="card-controls">
             <button class="card-add-btn add-cart-btn" data-id="${p.id}" ${soldOut ? 'disabled' : ''}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -240,26 +249,60 @@ function renderProducts() {
       </div>`;
   }).join('');
 
+  // Helper: update displayed price based on variant + qty
+  function updateCardPrice(id) {
+    const currency = storeData.currency || '₹';
+    const activePill = document.querySelector(`.card-variants__pill.active[data-id="${id}"]`);
+    const qtyEl = document.querySelector(`.card-qty__val[data-id="${id}"]`);
+    const priceEl = document.querySelector(`.product-card__price[data-id="${id}"]`);
+    if (!priceEl) return;
+    const unitPrice = activePill ? parseInt(activePill.dataset.price) : (allProducts.find(x => x.id === id)?.price || 0);
+    const qty = qtyEl ? parseInt(qtyEl.textContent) : 1;
+    priceEl.textContent = `${currency}${unitPrice * qty}`;
+  }
+
   // Variant pill click → toggle active + update price
   $$('.card-variants__pill').forEach(pill => {
     pill.addEventListener('click', () => {
       const id = pill.dataset.id;
       document.querySelectorAll(`.card-variants__pill[data-id="${id}"]`).forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      const currency = storeData.currency || '₹';
-      const priceEl = document.querySelector(`.product-card__price[data-id="${id}"]`);
-      if (priceEl) priceEl.textContent = `${currency}${pill.dataset.price}`;
+      updateCardPrice(id);
     });
   });
 
-  // Add to cart with selected variant (qty always 1)
+  // Qty selector +/- for Tarts & Cupcakes
+  $$('.card-qty__plus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const valEl = document.querySelector(`.card-qty__val[data-id="${id}"]`);
+      let qty = parseInt(valEl.textContent) || 1;
+      qty++;
+      valEl.textContent = qty;
+      updateCardPrice(id);
+    });
+  });
+
+  $$('.card-qty__minus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const valEl = document.querySelector(`.card-qty__val[data-id="${id}"]`);
+      let qty = parseInt(valEl.textContent) || 1;
+      if (qty > 1) qty--;
+      valEl.textContent = qty;
+      updateCardPrice(id);
+    });
+  });
+
+  // Add to cart with selected variant and qty
   $$('.add-cart-btn').forEach(btn => btn.addEventListener('click', () => {
     const productId = btn.dataset.id;
     const p = allProducts.find(x => x.id === productId);
     if (!p || p.qty <= 0) return;
 
     const activePill = document.querySelector(`.card-variants__pill.active[data-id="${productId}"]`);
-    const qty = 1;
+    const qtyEl = document.querySelector(`.card-qty__val[data-id="${productId}"]`);
+    const qty = qtyEl ? parseInt(qtyEl.textContent) : 1;
 
     let variant, price;
     if (activePill && p.variants && p.variants.length > 0) {
@@ -281,6 +324,12 @@ function renderProducts() {
       eggless: false,
       cakeMessage: ''
     });
+
+    // Reset qty back to 1 after adding
+    if (qtyEl) {
+      qtyEl.textContent = '1';
+      updateCardPrice(productId);
+    }
 
     // Button feedback
     btn.classList.add('added');
@@ -531,9 +580,13 @@ function openCheckout() {
   document.body.style.overflow = 'hidden';
 
   // Set min date to tomorrow (orders require 24 hours)
+  // Use local date parts to avoid UTC timezone shift
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const minDate = tomorrow.toISOString().split('T')[0];
+  const y = tomorrow.getFullYear();
+  const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
+  const d = String(tomorrow.getDate()).padStart(2, '0');
+  const minDate = `${y}-${m}-${d}`;
   const dateInput = $('#cust-date');
   dateInput.setAttribute('min', minDate);
   dateInput.value = minDate;
@@ -576,10 +629,10 @@ checkoutForm.addEventListener('submit', (e) => {
   if (!date) {
     $('#cust-date').classList.add('invalid'); valid = false;
   } else {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const minDate = tomorrow.toISOString().split('T')[0];
-    if (date < minDate) {
+    const tmr = new Date();
+    tmr.setDate(tmr.getDate() + 1);
+    const minVal = `${tmr.getFullYear()}-${String(tmr.getMonth() + 1).padStart(2, '0')}-${String(tmr.getDate()).padStart(2, '0')}`;
+    if (date < minVal) {
       $('#cust-date').classList.add('invalid');
       showToast('Delivery requires at least 24 hours. Please select a future date.', 'error');
       valid = false;

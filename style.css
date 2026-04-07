@@ -729,6 +729,57 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   text-align: center;
 }
 
+/* ---- Quantity Selector (Tarts & Cupcakes) ---- */
+.card-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0.6rem auto;
+  background: linear-gradient(135deg, rgba(253,246,236,0.9), rgba(240,224,200,0.7));
+  border: 1.5px solid var(--clr-cream-dark);
+  border-radius: 50px;
+  padding: 0.2rem 0.25rem;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+  backdrop-filter: blur(6px);
+}
+
+.card-qty__btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--clr-accent), #d4693a);
+  color: var(--clr-white);
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(232, 131, 74, 0.25);
+}
+
+.card-qty__btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 4px 14px rgba(232, 131, 74, 0.4);
+}
+
+.card-qty__btn:active {
+  transform: scale(0.95);
+}
+
+.card-qty__val {
+  font-weight: 700;
+  font-size: 1rem;
+  min-width: 2.2rem;
+  text-align: center;
+  color: var(--clr-brown);
+  font-family: var(--font-heading);
+}
+
 /* ---- Add to Cart Button ---- */
 .card-add-btn {
   flex: 1;
