@@ -622,9 +622,7 @@ checkoutForm.addEventListener('submit', (e) => {
   $$('.checkout-form input, .checkout-form textarea').forEach(el => el.classList.remove('invalid'));
 
   if (!name)    { $('#cust-name').classList.add('invalid'); valid = false; }
-  if (!phone || !/^[6-9]\d{9}$/.test(phone.replace(/[\s-]/g, '')))  {
-    $('#cust-phone').classList.add('invalid'); valid = false;
-  }
+  if (!phone)   { $('#cust-phone').classList.add('invalid'); valid = false; }
   if (!address) { $('#cust-address').classList.add('invalid'); valid = false; }
   if (!date) {
     $('#cust-date').classList.add('invalid'); valid = false;
