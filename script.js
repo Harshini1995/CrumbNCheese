@@ -687,26 +687,17 @@ checkoutForm.addEventListener('submit', (e) => {
   const desktopSection = $('#payment-desktop');
 
   if (mobileSection && desktopSection) {
-    // Show both GPay button and QR code on all devices
-    mobileSection.style.display = 'block';
-    desktopSection.style.display = 'block';
-    desktopSection.classList.remove('payment-desktop--secondary');
-
-    // On mobile, GPay button scrolls to QR instead of using UPI ID deep link
-    gpayLink.removeAttribute('target');
-    gpayLink.href = '#payment-qr';
-    gpayLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      desktopSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // Flash the QR to draw attention
-      paymentQR.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-      paymentQR.style.transform = 'scale(1.05)';
-      paymentQR.style.boxShadow = '0 0 20px rgba(232,131,74,0.4)';
-      setTimeout(() => {
-        paymentQR.style.transform = 'scale(1)';
-        paymentQR.style.boxShadow = '';
-      }, 600);
-    });
+    if (isMobile) {
+      // Mobile: show GPay deep link button + QR as fallback
+      mobileSection.style.display = 'block';
+      desktopSection.style.display = 'block';
+      desktopSection.classList.add('payment-desktop--secondary');
+    } else {
+      // Desktop: show QR code only
+      mobileSection.style.display = 'none';
+      desktopSection.style.display = 'block';
+      desktopSection.classList.remove('payment-desktop--secondary');
+    }
   }
 
   // Static QR code image (QRScanner.jpeg) is used instead of dynamic generation
