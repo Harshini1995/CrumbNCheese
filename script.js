@@ -230,7 +230,7 @@ function renderProducts() {
     return `
       <div class="product-card" data-id="${p.id}">
         <div class="product-card__img-wrap">
-          <img src="${p.image}" alt="${p.name}" class="product-card__img" loading="lazy" />
+          <img src="${p.image}" alt="${p.name}" class="product-card__img" loading="lazy" decoding="async" />
           ${badgeHTML}
           ${soldOutHTML}
         </div>

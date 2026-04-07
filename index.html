@@ -27,6 +27,9 @@
   <!-- Favicon -->
   <link rel="icon" href="CNC website/logo.png" type="image/png" />
 
+  <!-- Preload critical images -->
+  <link rel="preload" href="CNC website/logo.webp" as="image" type="image/webp" />
+
   <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#b5651d" />
@@ -46,7 +49,7 @@
   <header class="navbar" id="navbar">
     <div class="navbar__inner">
       <a href="#home" class="navbar__brand">
-        <img src="CNC website/logo.png" alt="Crumb & Cheese logo" class="navbar__logo" />
+        <img src="CNC website/logo.webp" alt="Crumb & Cheese logo" class="navbar__logo" />
       </a>
 
       <!-- Mobile hamburger toggle -->
@@ -80,7 +83,7 @@
   <!-- ============================================ -->
   <section class="hero" id="home">
     <div class="hero__content">
-      <img src="CNC website/logo.png" alt="" class="hero__logo" />
+      <img src="CNC website/logo.webp" alt="" class="hero__logo" fetchpriority="high" decoding="async" />
       <h1 class="hero__title">Baked with love,<br/>crafted with passion</h1>
       <p class="hero__subtitle">Handcrafted cakes, tarts, cupcakes &amp; brownies — made to celebrate life's sweetest moments.</p>
       <a href="#menu" class="btn btn--primary hero__cta">Explore Our Menu</a>
@@ -129,7 +132,7 @@
     <div class="about__inner reveal">
       <h2 class="section-title">Our Story</h2>
       <div class="about__content">
-        <img src="CNC website/logo.png" alt="Crumb & Cheese" class="about__image" />
+        <img src="CNC website/logo.webp" alt="Crumb & Cheese" class="about__image" />
         <p class="about__text" id="about-text">
           <!-- Populated from products.json "about" field -->
         </p>
@@ -169,7 +172,7 @@
   <!-- ============================================ -->
   <footer class="footer">
     <div class="footer__inner">
-      <img src="CNC website/logo.png" alt="Crumb & Cheese" class="footer__logo" />
+      <img src="CNC website/logo.webp" alt="Crumb & Cheese" class="footer__logo" />
       <p class="footer__text">Made with ❤️ by Crumb & Cheese</p>
       <p class="footer__copy">&copy; 2026 Crumb & Cheese. All rights reserved.</p>
     </div>
@@ -326,7 +329,7 @@
           <div class="payment-desktop" id="payment-desktop">
             <p class="payment-scan-label">Scan QR code to pay</p>
             <div class="payment-qr-wrap">
-              <img src="CNC website/QRScanner.jpeg" alt="UPI QR Code" class="payment-qr-img" id="payment-qr" />
+              <img src="CNC website/QRScanner.webp" alt="UPI QR Code" class="payment-qr-img" id="payment-qr" />
             </div>
             <p class="payment-scan-hint">Open GPay / PhonePe / Paytm and scan this code</p>
           </div>

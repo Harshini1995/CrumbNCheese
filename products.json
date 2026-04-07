@@ -10,21 +10,33 @@
     "address": "Bengaluru, India"
   },
   "upiId": "22harshu-1@okhdfcbank",
-  "categories": ["Cakes", "Tarts", "Cupcakes"],
+  "categories": [
+    "Cakes",
+    "Tarts",
+    "Cupcakes"
+  ],
   "products": [
     {
       "id": "lemon-blueberry-cake",
       "name": "Lemon Blueberry Cake",
-      "image": "CNC website/Cakes/Lemon blueberry cake.png",
+      "image": "CNC website/Cakes/Lemon blueberry cake.webp",
       "category": "Cakes",
       "price": 850,
       "description": "Zesty lemon sponge paired with a burst of blueberry compote and cream cheese frosting.",
       "available": true,
       "qty": 10,
-      "tags": ["new"],
+      "tags": [
+        "new"
+      ],
       "variants": [
-        { "label": "500g", "price": 850 },
-        { "label": "1kg", "price": 1700 }
+        {
+          "label": "500g",
+          "price": 850
+        },
+        {
+          "label": "1kg",
+          "price": 1700
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -34,16 +46,24 @@
     {
       "id": "chocolate-raspberry-cake",
       "name": "Chocolate Raspberry Cake",
-      "image": "CNC website/Cakes/Chocolate raspberry cake.png",
+      "image": "CNC website/Cakes/Chocolate raspberry cake.webp",
       "category": "Cakes",
       "price": 950,
       "description": "Decadent layers of dark chocolate sponge with fresh raspberry compote and silky chocolate ganache.",
       "available": true,
       "qty": 10,
-      "tags": ["bestseller"],
+      "tags": [
+        "bestseller"
+      ],
       "variants": [
-        { "label": "500g", "price": 950 },
-        { "label": "1kg", "price": 1900 }
+        {
+          "label": "500g",
+          "price": 950
+        },
+        {
+          "label": "1kg",
+          "price": 1900
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -53,7 +73,7 @@
     {
       "id": "chocolate-strawberry-cake",
       "name": "Chocolate Strawberry Cake",
-      "image": "CNC website/Cakes/Chocolate strawberry cake.png",
+      "image": "CNC website/Cakes/Chocolate strawberry cake.webp",
       "category": "Cakes",
       "price": 900,
       "description": "A luscious chocolate cake adorned with fresh strawberries and whipped cream layers.",
@@ -61,8 +81,14 @@
       "qty": 8,
       "tags": [],
       "variants": [
-        { "label": "500g", "price": 900 },
-        { "label": "1kg", "price": 1800 }
+        {
+          "label": "500g",
+          "price": 900
+        },
+        {
+          "label": "1kg",
+          "price": 1800
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -72,7 +98,7 @@
     {
       "id": "belgian-chocolate-cake",
       "name": "Belgian Chocolate Cake",
-      "image": "CNC website/Cakes/Belgian chocolate cake.png",
+      "image": "CNC website/Cakes/Belgian chocolate cake.webp",
       "category": "Cakes",
       "price": 900,
       "description": "Rich Belgian chocolate cake with decadent layers of chocolate ganache and velvety frosting.",
@@ -80,8 +106,14 @@
       "qty": 10,
       "tags": [],
       "variants": [
-        { "label": "500g", "price": 900 },
-        { "label": "1kg", "price": 1800 }
+        {
+          "label": "500g",
+          "price": 900
+        },
+        {
+          "label": "1kg",
+          "price": 1800
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -91,7 +123,7 @@
     {
       "id": "blueberry-cake",
       "name": "Blueberry Cake",
-      "image": "CNC website/Cakes/Blueberry cake.png",
+      "image": "CNC website/Cakes/Blueberry cake.webp",
       "category": "Cakes",
       "price": 800,
       "description": "A pure blueberry delight with velvety cream and a burst of fresh blueberries.",
@@ -99,8 +131,14 @@
       "qty": 12,
       "tags": [],
       "variants": [
-        { "label": "500g", "price": 800 },
-        { "label": "1kg", "price": 1600 }
+        {
+          "label": "500g",
+          "price": 800
+        },
+        {
+          "label": "1kg",
+          "price": 1600
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -110,17 +148,28 @@
     {
       "id": "bana-walnut-and-caramel-tart",
       "name": "Bana Walnut and Caramel Tart",
-      "image": "CNC website/Tarts/Bana walnut and caramel tart.png",
+      "image": "CNC website/Tarts/Bana walnut and caramel tart.webp",
       "category": "Tarts",
       "price": 120,
       "description": "Buttery tart shell filled with banana caramel custard and topped with candied walnuts.",
       "available": true,
       "qty": 10,
-      "tags": ["bestseller"],
+      "tags": [
+        "bestseller"
+      ],
       "variants": [
-        { "label": "Per Piece", "price": 120 },
-        { "label": "Box of 2", "price": 240 },
-        { "label": "Box of 4", "price": 480 }
+        {
+          "label": "Per Piece",
+          "price": 120
+        },
+        {
+          "label": "Box of 2",
+          "price": 240
+        },
+        {
+          "label": "Box of 4",
+          "price": 480
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -130,7 +179,7 @@
     {
       "id": "chocolate-and-strawberry-tart",
       "name": "Chocolate and Strawberry Tart",
-      "image": "CNC website/Tarts/Chocolate and strawberry tart.png",
+      "image": "CNC website/Tarts/Chocolate and strawberry tart.webp",
       "category": "Tarts",
       "price": 250,
       "description": "Crisp chocolate tart base with silky ganache filling and fresh sliced strawberries.",
@@ -138,9 +187,18 @@
       "qty": 10,
       "tags": [],
       "variants": [
-        { "label": "Per Piece", "price": 250 },
-        { "label": "Box of 2", "price": 500 },
-        { "label": "Box of 4", "price": 1000 }
+        {
+          "label": "Per Piece",
+          "price": 250
+        },
+        {
+          "label": "Box of 2",
+          "price": 500
+        },
+        {
+          "label": "Box of 4",
+          "price": 1000
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -150,17 +208,28 @@
     {
       "id": "pistachio-white-chocolate-tart",
       "name": "Pistachio White Chocolate Tart",
-      "image": "CNC website/Tarts/Pistachio white chocolate tart.png",
+      "image": "CNC website/Tarts/Pistachio white chocolate tart.webp",
       "category": "Tarts",
       "price": 200,
       "description": "Luxurious pistachio cream and white chocolate ganache in a delicate pastry shell.",
       "available": true,
       "qty": 6,
-      "tags": ["limited"],
+      "tags": [
+        "limited"
+      ],
       "variants": [
-        { "label": "Per Piece", "price": 200 },
-        { "label": "Box of 2", "price": 400 },
-        { "label": "Box of 4", "price": 800 }
+        {
+          "label": "Per Piece",
+          "price": 200
+        },
+        {
+          "label": "Box of 2",
+          "price": 400
+        },
+        {
+          "label": "Box of 4",
+          "price": 800
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -170,7 +239,7 @@
     {
       "id": "lemon-meringue-tart",
       "name": "Lemon Meringue Tart",
-      "image": "CNC website/Tarts/Lemon meringue tart.png",
+      "image": "CNC website/Tarts/Lemon meringue tart.webp",
       "category": "Tarts",
       "price": 100,
       "description": "Tangy lemon curd in a buttery shell crowned with torched Italian meringue.",
@@ -178,9 +247,18 @@
       "qty": 8,
       "tags": [],
       "variants": [
-        { "label": "Per Piece", "price": 100 },
-        { "label": "Box of 2", "price": 200 },
-        { "label": "Box of 4", "price": 400 }
+        {
+          "label": "Per Piece",
+          "price": 100
+        },
+        {
+          "label": "Box of 2",
+          "price": 200
+        },
+        {
+          "label": "Box of 4",
+          "price": 400
+        }
       ],
       "customizationOptions": {
         "eggless": false,
@@ -190,17 +268,28 @@
     {
       "id": "mocha-tart",
       "name": "Mocha Tart",
-      "image": "CNC website/Tarts/Mocha tart.png",
+      "image": "CNC website/Tarts/Mocha tart.webp",
       "category": "Tarts",
       "price": 180,
       "description": "Espresso-infused chocolate ganache in a crisp tart shell — a coffee lover's dream.",
       "available": true,
       "qty": 10,
-      "tags": ["new"],
+      "tags": [
+        "new"
+      ],
       "variants": [
-        { "label": "Per Piece", "price": 180 },
-        { "label": "Box of 2", "price": 360 },
-        { "label": "Box of 4", "price": 720 }
+        {
+          "label": "Per Piece",
+          "price": 180
+        },
+        {
+          "label": "Box of 2",
+          "price": 360
+        },
+        {
+          "label": "Box of 4",
+          "price": 720
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -210,15 +299,20 @@
     {
       "id": "chocolate-hazelnut-cupcake",
       "name": "Chocolate Hazelnut Cupcake",
-      "image": "CNC website/CupCakes/Chocolate hazelnut cupcake.png",
+      "image": "CNC website/CupCakes/Chocolate hazelnut cupcake.webp",
       "category": "Cupcakes",
       "price": 930,
       "description": "Moist chocolate cupcake with a Nutella core and hazelnut buttercream swirl.",
       "available": true,
       "qty": 20,
-      "tags": ["bestseller"],
+      "tags": [
+        "bestseller"
+      ],
       "variants": [
-        { "label": "Box of 6", "price": 930 }
+        {
+          "label": "Box of 6",
+          "price": 930
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -228,7 +322,7 @@
     {
       "id": "limoncello-cupcake",
       "name": "Limoncello Cupcake",
-      "image": "CNC website/CupCakes/Limoncello cupcake.png",
+      "image": "CNC website/CupCakes/Limoncello cupcake.webp",
       "category": "Cupcakes",
       "price": 510,
       "description": "Light and zesty limoncello cupcake with a citrus glaze and lemon buttercream.",
@@ -236,7 +330,10 @@
       "qty": 20,
       "tags": [],
       "variants": [
-        { "label": "Box of 6", "price": 510 }
+        {
+          "label": "Box of 6",
+          "price": 510
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -246,7 +343,7 @@
     {
       "id": "vanilla-custard-cupcake",
       "name": "Vanilla Custard Cupcake",
-      "image": "CNC website/CupCakes/Vanilla custard cupcake.png",
+      "image": "CNC website/CupCakes/Vanilla custard cupcake.webp",
       "category": "Cupcakes",
       "price": 480,
       "description": "Fluffy vanilla cupcake filled with silky custard cream and topped with vanilla bean frosting.",
@@ -254,7 +351,10 @@
       "qty": 25,
       "tags": [],
       "variants": [
-        { "label": "Box of 6", "price": 480 }
+        {
+          "label": "Box of 6",
+          "price": 480
+        }
       ],
       "customizationOptions": {
         "eggless": true,
@@ -264,7 +364,7 @@
     {
       "id": "tiramisu-cupcake",
       "name": "Tiramisu Cupcake",
-      "image": "CNC website/CupCakes/Tiramisu cupcake.png",
+      "image": "CNC website/CupCakes/Tiramisu cupcake.webp",
       "category": "Cupcakes",
       "price": 690,
       "description": "Espresso-soaked cupcake with mascarpone frosting and a dusting of cocoa powder.",
@@ -272,7 +372,10 @@
       "qty": 20,
       "tags": [],
       "variants": [
-        { "label": "Box of 6", "price": 690 }
+        {
+          "label": "Box of 6",
+          "price": 690
+        }
       ],
       "customizationOptions": {
         "eggless": true,
