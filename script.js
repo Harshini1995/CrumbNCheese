@@ -687,17 +687,10 @@ checkoutForm.addEventListener('submit', (e) => {
   const desktopSection = $('#payment-desktop');
 
   if (mobileSection && desktopSection) {
-    if (isMobile) {
-      // Mobile: show UPI button prominently, QR smaller as fallback
-      mobileSection.style.display = 'block';
-      desktopSection.style.display = 'block';
-      desktopSection.classList.add('payment-desktop--secondary');
-    } else {
-      // Desktop: show QR prominently, UPI link as copy-able text
-      mobileSection.style.display = 'none';
-      desktopSection.style.display = 'block';
-      desktopSection.classList.remove('payment-desktop--secondary');
-    }
+    // Show QR code on all devices (UPI ID deep link has banking issues)
+    mobileSection.style.display = 'none';
+    desktopSection.style.display = 'block';
+    desktopSection.classList.remove('payment-desktop--secondary');
   }
 
   // Static QR code image (QRScanner.jpeg) is used instead of dynamic generation
