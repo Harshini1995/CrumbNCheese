@@ -55,7 +55,7 @@ const checkoutStep2  = $('#checkout-step-2');
 const checkoutStep3  = $('#checkout-step-3');
 const paymentTotal   = $('#payment-total');
 const paymentQR      = $('#payment-qr');
-const gpayLink       = $('#gpay-link');
+
 const paymentDoneBtn = $('#payment-done-btn');
 const confirmClose   = $('#confirmation-close');
 
@@ -672,35 +672,11 @@ checkoutForm.addEventListener('submit', (e) => {
     </div>
   `;
 
-  // Generate UPI link
-  const upiId = storeData.upiId || '22harshu-1@okhdfcbank';
-  const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(storeData.storeName || 'Crumb & Cheese')}&am=${total}&cu=INR`;
-  gpayLink.href = upiLink;
-
-  // Populate mobile UPI amount
-  const gpayAmountEl = $('#gpay-amount');
-  if (gpayAmountEl) gpayAmountEl.textContent = total.toLocaleString('en-IN');
-
-  // Mobile vs Desktop detection
-  const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-  const mobileSection = $('#payment-mobile');
+  // Show QR code for payment
   const desktopSection = $('#payment-desktop');
-
-  if (mobileSection && desktopSection) {
-    if (isMobile) {
-      // Mobile: show GPay deep link button + QR as fallback
-      mobileSection.style.display = 'block';
-      desktopSection.style.display = 'block';
-      desktopSection.classList.add('payment-desktop--secondary');
-    } else {
-      // Desktop: show QR code only
-      mobileSection.style.display = 'none';
-      desktopSection.style.display = 'block';
-      desktopSection.classList.remove('payment-desktop--secondary');
-    }
+  if (desktopSection) {
+    desktopSection.style.display = 'block';
   }
-
-  // Static QR code image (QRScanner.jpeg) is used instead of dynamic generation
 
   checkoutStep1.style.display = 'none';
   checkoutStep2.style.display = 'block';
