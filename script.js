@@ -86,15 +86,8 @@ function formatPrice(amount) {
   return `${currency}${amount.toLocaleString('en-IN')}`;
 }
 
-// ── FormSubmit.co Email ───────────────────────
-// No initialization needed — FormSubmit works via simple POST
-// Config is in email-config.js (just the target email)
-function getFormSubmitURL() {
-  const email = (typeof FORMSUBMIT_EMAIL !== 'undefined' && FORMSUBMIT_EMAIL)
-    ? FORMSUBMIT_EMAIL
-    : 'vineshcool1990@gmail.com';
-  return `https://formsubmit.co/ajax/${email}`;
-}
+// ── WhatsApp Order Notification ───────────
+// Orders are sent via WhatsApp link — no server/API needed
 
 // ── Cart (LocalStorage) ───────────────────────
 function getCart() {
@@ -689,10 +682,8 @@ paymentBackBtn.addEventListener('click', () => {
   checkoutStep1.style.display = 'block';
 });
 
-// Step 2 → Step 3 (Send Email via FormSubmit.co)
-let lastOrderParams = null;  // stored for retry
-
-paymentDoneBtn.addEventListener('click', async () => {
+// Step 2 → Step 3 (Send order via WhatsApp)
+paymentDoneBtn.addEventListener('click', () => {
   const cart = getCart();
   const currency = storeData.currency || '₹';
   const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
@@ -712,121 +703,32 @@ paymentDoneBtn.addEventListener('click', async () => {
 
   const orderTime = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
-  // FormSubmit.co payload
-  const formData = {
-    _subject: `🧁 New Order from ${$('#cust-name').value.trim()} — Crumb & Cheese`,
-    _template: 'table',
-    'Customer Name':       $('#cust-name').value.trim(),
-    'Phone':               $('#cust-phone').value.trim(),
-    'Email':               $('#cust-email').value.trim() || 'Not provided',
-    'Delivery Address':    $('#cust-address').value.trim(),
-    'Delivery Date':       deliveryDate,
-    'Special Instructions': $('#cust-notes').value.trim() || 'None',
-    'Order Items':         orderItems,
-    'Total Amount':        formatPrice(total),
-    'Transaction ID':      $('#txn-id').value.trim() || 'Not provided',
-    'Order Time':          orderTime
-  };
+  // Build WhatsApp message
+  const message = `🧁 *New Order — Crumb & Cheese*\n\n`
+    + `*Customer:* ${$('#cust-name').value.trim()}\n`
+    + `*Phone:* ${$('#cust-phone').value.trim()}\n`
+    + `*Email:* ${$('#cust-email').value.trim() || 'Not provided'}\n`
+    + `*Address:* ${$('#cust-address').value.trim()}\n`
+    + `*Delivery Date:* ${deliveryDate}\n`
+    + `*Special Instructions:* ${$('#cust-notes').value.trim() || 'None'}\n\n`
+    + `*Order Items:*\n${orderItems}\n\n`
+    + `*Total:* ${formatPrice(total)}\n`
+    + `*Transaction ID:* ${$('#txn-id').value.trim() || 'Not provided'}\n`
+    + `*Order Time:* ${orderTime}`;
 
-  // Store for retry
-  lastOrderParams = formData;
+  // WhatsApp phone number (digits only)
+  const phone = (storeData.contact && storeData.contact.phone || '+91 80733 56027').replace(/\D/g, '');
+  const waURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  paymentDoneBtn.textContent = 'Sending...';
-  paymentDoneBtn.disabled = true;
+  // Open WhatsApp
+  window.open(waURL, '_blank');
 
-  try {
-    const res = await fetch(getFormSubmitURL(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await res.json();
-
-    if (result.success) {
-      console.log('✅ Order email sent via FormSubmit.co');
-      localStorage.removeItem('cnc_cart');
-      updateCartBadge();
-      checkoutStep2.style.display = 'none';
-      checkoutStep3.style.display = 'block';
-      showToast('Order placed successfully! 🎉');
-    } else {
-      throw new Error(result.message || 'FormSubmit returned an error');
-    }
-
-  } catch (err) {
-    console.error('Email send failed:', err);
-    showToast('Could not send confirmation — see options below', 'error', 5000);
-
-    // Build a mailto fallback link
-    const subject = encodeURIComponent(`New Order — ${formData['Customer Name']}`);
-    const body = encodeURIComponent(
-      `Order from Crumb & Cheese Website\n\n` +
-      `Customer: ${formData['Customer Name']}\n` +
-      `Phone: ${formData['Phone']}\n` +
-      `Email: ${formData['Email']}\n` +
-      `Address: ${formData['Delivery Address']}\n` +
-      `Delivery Date: ${formData['Delivery Date']}\n` +
-      `Special Instructions: ${formData['Special Instructions']}\n\n` +
-      `Order Items:\n${formData['Order Items']}\n\n` +
-      `Total: ${formData['Total Amount']}\n` +
-      `Transaction ID: ${formData['Transaction ID']}`
-    );
-    const mailtoLink = `mailto:vineshcool1990@gmail.com?subject=${subject}&body=${body}`;
-
-    // Show fallback UI with retry + manual email option
-    checkoutStep2.innerHTML = `
-      <div class="checkout-step" style="padding:2rem;text-align:center;">
-        <h2 class="modal__title">Almost done!</h2>
-        <p style="margin-bottom:1rem;color:var(--clr-brown-light);">
-          Payment received, but we couldn't send the automated confirmation.<br>
-          Please try again or email us directly.
-        </p>
-        <button class="btn btn--primary" id="retry-email-btn" style="margin-bottom:0.8rem;width:100%;">🔄 Retry Sending</button>
-        <a href="${mailtoLink}" class="btn btn--outline" style="display:block;width:100%;text-align:center;">✉️ Email Us Directly</a>
-        <button class="btn btn--outline" id="skip-email-btn" style="margin-top:0.8rem;width:100%;opacity:0.6;">Skip — I'll contact later</button>
-      </div>
-    `;
-
-    // Retry button
-    $('#retry-email-btn').addEventListener('click', async () => {
-      if (!lastOrderParams) { showToast('No order data to retry', 'error'); return; }
-      try {
-        $('#retry-email-btn').textContent = 'Sending...';
-        const retryRes = await fetch(getFormSubmitURL(), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(lastOrderParams)
-        });
-        const retryResult = await retryRes.json();
-        if (retryResult.success) {
-          showToast('Order email sent! 🎉');
-          localStorage.removeItem('cnc_cart');
-          updateCartBadge();
-          checkoutStep2.style.display = 'none';
-          checkoutStep3.style.display = 'block';
-        } else {
-          throw new Error('Retry failed');
-        }
-      } catch (retryErr) {
-        showToast('Still failing — please email us directly', 'error');
-        $('#retry-email-btn').textContent = '🔄 Retry Sending';
-      }
-    });
-
-    // Skip button
-    $('#skip-email-btn').addEventListener('click', () => {
-      localStorage.removeItem('cnc_cart');
-      updateCartBadge();
-      checkoutStep2.style.display = 'none';
-      checkoutStep3.style.display = 'block';
-      showToast('Order saved — please contact us to confirm', 'info');
-    });
-
-  } finally {
-    paymentDoneBtn.textContent = "I've Completed Payment";
-    paymentDoneBtn.disabled = false;
-  }
+  // Move to confirmation step
+  localStorage.removeItem('cnc_cart');
+  updateCartBadge();
+  checkoutStep2.style.display = 'none';
+  checkoutStep3.style.display = 'block';
+  showToast('Order placed! Confirm via WhatsApp 🎉');
 });
 
 // Confirmation close
