@@ -530,9 +530,21 @@ function openCheckout() {
   checkoutModal.classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // Set min date to today
-  const today = new Date().toISOString().split('T')[0];
-  $('#cust-date').setAttribute('min', today);
+  // Set min date to tomorrow (orders require 24 hours)
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minDate = tomorrow.toISOString().split('T')[0];
+  const dateInput = $('#cust-date');
+  dateInput.setAttribute('min', minDate);
+  dateInput.value = minDate;
+
+  // Enforce min date if user bypasses the picker
+  dateInput.addEventListener('change', function () {
+    if (this.value < minDate) {
+      this.value = minDate;
+      showToast('Delivery requires at least 24 hours. Date set to earliest available.', 'error');
+    }
+  });
 }
 
 function closeCheckout() {
@@ -561,7 +573,18 @@ checkoutForm.addEventListener('submit', (e) => {
     $('#cust-phone').classList.add('invalid'); valid = false;
   }
   if (!address) { $('#cust-address').classList.add('invalid'); valid = false; }
-  if (!date)    { $('#cust-date').classList.add('invalid'); valid = false; }
+  if (!date) {
+    $('#cust-date').classList.add('invalid'); valid = false;
+  } else {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const minDate = tomorrow.toISOString().split('T')[0];
+    if (date < minDate) {
+      $('#cust-date').classList.add('invalid');
+      showToast('Delivery requires at least 24 hours. Please select a future date.', 'error');
+      valid = false;
+    }
+  }
 
   if (!valid) {
     showToast('Please fill all required fields correctly', 'error');
