@@ -704,7 +704,7 @@ paymentDoneBtn.addEventListener('click', () => {
   const orderTime = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
 
   // Build WhatsApp message
-  const message = `🧁 *New Order — Crumb & Cheese*\n\n`
+  const message = `*Order Details — Crumb & Cheese*\n\n`
     + `*Customer:* ${$('#cust-name').value.trim()}\n`
     + `*Phone:* ${$('#cust-phone').value.trim()}\n`
     + `*Email:* ${$('#cust-email').value.trim() || 'Not provided'}\n`
